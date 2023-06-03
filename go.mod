@@ -1,4 +1,4 @@
-module github.com/yellow-canary/dora
+module github.com/yellow-canary/fourkeys
 
 go 1.19
 

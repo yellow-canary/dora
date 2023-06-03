@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "github.com/yellow-canary/dora/cmd"
+import "github.com/yellow-canary/fourkeys/cmd"
 
 func main() {
 	cmd.Execute()

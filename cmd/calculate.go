@@ -10,8 +10,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/yellow-canary/dora/internal/auth"
-	"github.com/yellow-canary/dora/pkg/dora"
+	"github.com/yellow-canary/fourkeys/internal/auth"
+	"github.com/yellow-canary/fourkeys/pkg/fourkeys"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -58,22 +58,22 @@ func handleCalculate(cmd *cobra.Command, args []string) {
 	repo := strings.Split(ghRepo, "/")[1]
 
 	// Calculate DORA 4 keys metrics
-	deploymentFrequency, err := dora.CalculateDeploymentFrequency(client, owner, repo)
+	deploymentFrequency, err := fourkeys.CalculateDeploymentFrequency(client, owner, repo)
 	if err != nil {
 		log.Fatal("Error calculating Deployment Frequency:", err)
 	}
 
-	leadTimeToChange, err := dora.CalculateLeadTimeToChange(client, owner, repo)
+	leadTimeToChange, err := fourkeys.CalculateLeadTimeToChange(client, owner, repo)
 	if err != nil {
 		log.Fatal("Error calculating Lead Time to Change:", err)
 	}
 
-	changeFailureRate, err := dora.CalculateChangeFailureRate(client, owner, repo)
+	changeFailureRate, err := fourkeys.CalculateChangeFailureRate(client, owner, repo)
 	if err != nil {
 		log.Fatal("Error calculating Change Failure Rate:", err)
 	}
 
-	timeToRestoreService, err := dora.CalculateTimeToRestoreService(client, owner, repo)
+	timeToRestoreService, err := fourkeys.CalculateTimeToRestoreService(client, owner, repo)
 	if err != nil {
 		log.Fatal("Error calculating Time to Restore Service:", err)
 	}

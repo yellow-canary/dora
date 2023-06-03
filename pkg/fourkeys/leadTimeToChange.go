@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/google/go-github/v52/github"
-	"github.com/yellow-canary/dora/internal/utils"
+	"github.com/yellow-canary/fourkeys/internal/utils"
 )
 
 // calculateLeadTimeToChange calculates the lead time to change from a GitHub repository

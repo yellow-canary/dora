@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/google/go-github/v52/github"
-	"github.com/yellow-canary/dora/internal/utils"
+	"github.com/yellow-canary/fourkeys/internal/utils"
 )
 
 // calculateTimeToRestoreService calculates the time to restore service from a GitHub repository
@@ -26,7 +26,7 @@ func calculateTimeToRestoreServiceFromIssues(issues []*github.Issue) time.Durati
 	var totalTime time.Duration
 	var closedCount int
 	for _, issue := range issues {
-		if issue.ClosedAt != nil && issue.CreatedAt != nil {
+		if strings.Contains(label.GetName(), "bug") && issue.ClosedAt != nil && issue.CreatedAt != nil {
 			duration := issue.GetClosedAt().Sub(issue.GetCreatedAt().Time)
 			totalTime += duration
 			closedCount++

@@ -4,7 +4,7 @@ import (
 	"math"
 
 	"github.com/google/go-github/v52/github"
-	"github.com/yellow-canary/dora/internal/utils"
+	"github.com/yellow-canary/fourkeys/internal/utils"
 )
 
 // calculateDeploymentFrequency calculates the deployment frequency from a GitHub repository

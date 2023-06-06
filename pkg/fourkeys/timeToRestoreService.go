@@ -1,6 +1,7 @@
-package dora
+package fourkeys
 
 import (
+	"strings"
 	"time"
 
 	"github.com/google/go-github/v52/github"
@@ -26,11 +27,18 @@ func calculateTimeToRestoreServiceFromIssues(issues []*github.Issue) time.Durati
 	var totalTime time.Duration
 	var closedCount int
 	for _, issue := range issues {
-		if strings.Contains(label.GetName(), "bug") && issue.ClosedAt != nil && issue.CreatedAt != nil {
-			duration := issue.GetClosedAt().Sub(issue.GetCreatedAt().Time)
-			totalTime += duration
-			closedCount++
+		if issue.GetState() == "closed" && issue.Labels != nil {
+			for _, label := range issue.Labels {
+				if strings.Contains(label.GetName(), "bug") {
+					duration := issue.GetClosedAt().Sub(issue.GetCreatedAt().Time)
+					totalTime += duration
+					closedCount++
+				}
+			}
 		}
+	}
+	if closedCount == 0 {
+		return 0
 	}
 
 	// Calculate the average time to restore service

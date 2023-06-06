@@ -1,6 +1,8 @@
-package dora
+package fourkeys
 
 import (
+	"strings"
+
 	"github.com/google/go-github/v52/github"
 	"github.com/yellow-canary/fourkeys/internal/utils"
 )
@@ -16,18 +18,18 @@ func CalculateChangeFailureRate(client *github.Client, owner, repo string) (floa
 		return 0.0, err
 	}
 
-	return calculateChangeFailureRateFromIssues(issues, releases), nil
+	return calculateChangeFailureRateFromIssuesAndReleases(issues, releases), nil
 }
 
-// calculateChangeFailureRate calculates the change failure rate from a list of issues and list of releases	
-func calculateChangeFailureRateFromIssuesAndReleases(issues []*github.Issue, releases []*github.Release) float64 {
+// calculateChangeFailureRate calculates the change failure rate from a list of issues and list of releases
+func calculateChangeFailureRateFromIssuesAndReleases(issues []*github.Issue, releases []*github.RepositoryRelease) float64 {
 	if len(issues) == 0 || len(releases) == 0 {
 		return 0.0
 	}
 	// count issues with label 'bug'
 	failedCount := 0
 	for _, issue := range issues {
-		if issue.GetState() == "closed" && issue.Labels != nil {
+		if issue.Labels != nil {
 			for _, label := range issue.Labels {
 				if strings.Contains(label.GetName(), "bug") {
 					failedCount++

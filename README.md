@@ -17,7 +17,7 @@ To use FourKeys CLI, you need to have Go installed on your machine. If you don't
 
 Once Go is installed, you can install FourKeys CLI by running the following command:
 ```bash
-go install github.com/yellow-canary/fourkeys@latest
+go install github.com/yellow-canary/fourkeys-cli@latest
 ```
 
 ## Usage
@@ -67,6 +67,6 @@ If you'd like to contribute code, you can fork the repository, create a new bran
 
 ## License
 
-[Apache](http://www.apache.org/licenses/LICENSE-2.0)
+[MIT License](https://www.mit.edu/~amini/LICENSE.md)
 
 Thank you for using FourKeys CLI! If you have any questions or need further assistance, please don't hesitate to reach out.
